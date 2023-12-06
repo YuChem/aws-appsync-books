@@ -1,7 +1,3 @@
-schema {
-  query: Query
-}
-
 type Author {
   id: ID!
   name: String!
@@ -18,14 +14,6 @@ type Book {
   authorz: [Author]
 }
 
-type Query {
-#  searchAuthor(filter: AuthorFilter)
-  getAuthor(id: ID!): Author
-  getBook(id: ID!): Book
-  getBooksByAuthor( authorId: ID!): [Book]
-  listBooks(limit: Int): [Book]
-}
-
 enum Country {
   US
   Canada
@@ -33,4 +21,15 @@ enum Country {
   India
   Ireland
   Italy
+}
+
+type Query {
+  getAuthor(id: ID!): Author
+  getBook(id: ID!): Book
+  listAuthors(name: String, limit: Int): [Author]
+  listBooks(title: String, limit: Int): [Book]
+}
+
+schema {
+  query: Query
 }

@@ -4,12 +4,13 @@
  * @returns {import('@aws-appsync/utils').DynamoDBScanRequest} the request
  */
 export function request(ctx) {
-  const { title:filter, limit = 20 } = ctx.args;
+  const { name:filter, limit = 20 } = ctx.args;
   
   return { 
     operation: "Scan",
     filter: {
-      expression: `contains ( title, :filter)`,
+      expression: `contains ( #name, :filter)`,
+      expressionNames: { "#name": "name" },
       expressionValues: util.dynamodb.toMapValues( { ':filter': filter } )
     },
     limit

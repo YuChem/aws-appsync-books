@@ -39,6 +39,24 @@ Resources:
             TableArn: !GetAtt BooksTable.Arn
 
       Functions:
+        getAuthorFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: AuthorsDataSource
+          CodeUri: ./resolvers/getItemById.js
+        getBookFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: BooksDataSource
+          CodeUri: ./resolvers/getItemById.js 
+        listAuthorsFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: AuthorsDataSource
+          CodeUri: ./resolvers/listAuthors.js 
         listBooksFunction:
           Runtime: 
             Name: APPSYNC_JS
@@ -59,7 +77,27 @@ Resources:
           CodeUri: ./resolvers/getAuthorBooks.js 
 
       Resolvers:
+###### action resolver
         Query:
+          getAuthor:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+            Pipeline:
+            - getAuthorFunction
+          getBook:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+            Pipeline:
+            - getBookFunction
+          listAuthors:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+#            CodeUri: ./appsync/resolvers/listBooks.js 
+            Pipeline:
+            - listAuthorsFunction
           listBooks:
             Runtime:
               Name: APPSYNC_JS
@@ -67,7 +105,8 @@ Resources:
 #            CodeUri: ./appsync/resolvers/listBooks.js 
             Pipeline:
             - listBooksFunction
-#            - getParentChildrenFunction
+
+###### fields resolvers
         Book:
           authorz:
             Runtime:
@@ -76,7 +115,6 @@ Resources:
 #            CodeUri: ./appsync/resolvers/listBooks.js 
             Pipeline:
             - getBookAuthorsFunction
-#            - getParentChildrenFunction
 
         Author:
           books:
@@ -86,4 +124,3 @@ Resources:
 #            CodeUri: ./appsync/resolvers/listBooks.js 
             Pipeline:
             - getAuthorBooksFunction
-#            - getParentChildrenFunction
