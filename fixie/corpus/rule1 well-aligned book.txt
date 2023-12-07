@@ -1,0 +1,2 @@
+A book is considered to be "well-aligned" if its ISBN number has the count of even and odd digits differ no more than 1.
+Two books are considere to be cousins when they both are well-alligned.

@@ -1,0 +1,126 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless patterns - AppSync to DynamoDB single-table
+
+Resources:
+  AuthorsTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: authors
+      PrimaryKey:
+        Name: id
+        Type: String
+
+  BooksTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: books
+      PrimaryKey:
+        Name: id
+        Type: String
+
+  BooksGQLAPI:
+    Type: AWS::Serverless::GraphQLApi
+    Properties:
+      SchemaUri: ./schema.graphql
+      ApiKeys:
+        TestApiKey:
+          Description: Test API Key
+      Auth:
+        Type: API_KEY
+
+      DataSources:
+        DynamoDb:
+          AuthorsDataSource:
+            TableName: !Ref AuthorsTable
+            TableArn: !GetAtt AuthorsTable.Arn
+          BooksDataSource:
+            TableName: !Ref BooksTable
+            TableArn: !GetAtt BooksTable.Arn
+
+      Functions:
+        getAuthorFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: AuthorsDataSource
+          CodeUri: ./resolvers/getItemById.js
+        getBookFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: BooksDataSource
+          CodeUri: ./resolvers/getItemById.js 
+        listAuthorsFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: AuthorsDataSource
+          CodeUri: ./resolvers/listAuthors.js 
+        listBooksFunction:
+          Runtime: 
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: BooksDataSource
+          CodeUri: ./resolvers/listBooks.js 
+        getBookAuthorsFunction:
+          Runtime:
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: AuthorsDataSource
+          CodeUri: ./resolvers/getBookAuthors.js 
+        getAuthorBooksFunction:
+          Runtime:
+            Name: APPSYNC_JS
+            Version: 1.0.0
+          DataSource: BooksDataSource
+          CodeUri: ./resolvers/getAuthorBooks.js 
+
+      Resolvers:
+###### action resolver
+        Query:
+          getAuthor:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+            Pipeline:
+            - getAuthorFunction
+          getBook:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+            Pipeline:
+            - getBookFunction
+          listAuthors:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+#            CodeUri: ./appsync/resolvers/listBooks.js 
+            Pipeline:
+            - listAuthorsFunction
+          listBooks:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+#            CodeUri: ./appsync/resolvers/listBooks.js 
+            Pipeline:
+            - listBooksFunction
+
+###### fields resolvers
+        Book:
+          authorz:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+#            CodeUri: ./appsync/resolvers/listBooks.js 
+            Pipeline:
+            - getBookAuthorsFunction
+
+        Author:
+          books:
+            Runtime:
+              Name: APPSYNC_JS
+              Version: "1.0.0"
+#            CodeUri: ./appsync/resolvers/listBooks.js 
+            Pipeline:
+            - getAuthorBooksFunction

@@ -1,0 +1,10 @@
+Books are classified by the classes: J A O
+
+To get this determined substract the author yearh of birth from the books year of publish
+- if result is less than 20  than the book is of class 'J'
+- if result is between 20 and 60 than the book is of class 'A'
+- if the result is more than 60 than the book is of class 'O'
+
+an example of a query to extract both years of birth and publis:
+
+query Book { getBook(id: "1") { title yearPublished authorz { name bornYear } } }

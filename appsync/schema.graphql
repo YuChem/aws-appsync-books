@@ -1,0 +1,35 @@
+type Author {
+  id: ID!
+  name: String!
+  bornYear: Int
+  bornCountry: Country
+  books: [Book]
+}
+
+type Book {
+  id: ID!
+  title: String!
+  ISBN: String
+  yearPublished: Int
+  authorz: [Author]
+}
+
+enum Country {
+  US
+  Canada
+  Iceland
+  India
+  Ireland
+  Italy
+}
+
+type Query {
+  getAuthor(id: ID!): Author
+  getBook(id: ID!): Book
+  listAuthors(name: String, limit: Int): [Author]
+  listBooks(title: String, limit: Int): [Book]
+}
+
+schema {
+  query: Query
+}
