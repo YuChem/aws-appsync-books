@@ -35,3 +35,9 @@ npx fixie auth
 ```ah
 npx fixie serve
 ```
+
+### running queries
+go to console.fixie.ai and run the queries
+- show me the books
+- add a column with the books respective class
+- add the column indicating whether the book is well-aligned
