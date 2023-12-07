@@ -30,7 +30,7 @@ books.forEach((book) => {
   });
 });
 
-authorData.forEach((author) => {
+authors.forEach((author) => {
   const params = {
     TableName: "authors",
     Item: {

@@ -1,6 +1,6 @@
 appsync/.aws-sam/
 appsync/samconfig.toml
-fixie/node_modules/
-fixie/dist/
-fixie/package-lock.json
-fixie/.env
+node_modules/
+dist/
+package-lock.json
+.env
