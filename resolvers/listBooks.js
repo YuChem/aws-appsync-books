@@ -8,10 +8,10 @@ export function request(ctx) {
   
   return { 
     operation: "Scan",
-    filter: {
+    filter: filter ? {
       expression: `contains ( title, :filter)`,
       expressionValues: util.dynamodb.toMapValues( { ':filter': filter } )
-    },
+    } : null,
     limit
   };
 }
