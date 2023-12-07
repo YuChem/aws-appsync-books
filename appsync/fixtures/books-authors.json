@@ -1,0 +1,124 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "To Kill a Mockingbird",
+      "ISBN": "9780446310789",
+      "yearPublished": 1960,
+      "authors": ["1"]
+    },
+    {
+      "id": "2",
+      "title": "1984",
+      "ISBN": "9780451524935",
+      "yearPublished": 1949,
+      "authors": ["2"]
+    },
+    {
+      "id": "3",
+      "title": "Animal Farm",
+      "ISBN": "9780451526342",
+      "yearPublished": 1945,
+      "authors": ["2"]
+    },
+    {
+      "id": "4",
+      "title": "The Great Gatsby",
+      "ISBN": "9780743273565",
+      "yearPublished": 1925,
+      "authors": ["3"]
+    },
+    {
+      "id": "5",
+      "title": "The Catcher in the Rye",
+      "ISBN": "9780316769174",
+      "yearPublished": 1951,
+      "authors": ["4"]
+    },
+    {
+      "id": "6",
+      "title": "Pride and Prejudice",
+      "ISBN": "9780679783268",
+      "yearPublished": 1813,
+      "authors": ["5"]
+    },
+    {
+      "id": "7",
+      "title": "The Da Vinci Code",
+      "ISBN": "9780307474278",
+      "yearPublished": 2003,
+      "authors": ["6"]
+    },
+    {
+      "id": "8",
+      "title": "Good Omens",
+      "ISBN": "9780060853969",
+      "yearPublished": 1990,
+      "authors": ["7", "8"]
+    },
+    {
+      "id": "9",
+      "title": "American Gods",
+      "ISBN": "9780062572110",
+      "yearPublished": 2001,
+      "authors": ["8"]
+    },
+    {
+      "id": "10",
+      "title": "Inferno",
+      "ISBN": "9780804121054",
+      "yearPublished": 2013,
+      "authors": ["6"]
+    }
+  ],
+  "authors": [
+    {
+      "id": "1",
+      "name": "Harper Lee",
+      "bornYear": 1926,
+      "bornCountry": "US"
+    },
+    {
+      "id": "2",
+      "name": "George Orwell",
+      "bornYear": 1903,
+      "bornCountry": "India"
+    },
+    {
+      "id": "3",
+      "name": "F. Scott Fitzgerald",
+      "bornYear": 1896,
+      "bornCountry": "US"
+    },
+    {
+      "id": "4",
+      "name": "J.D. Salinger",
+      "bornYear": 1919,
+      "bornCountry": "US"
+    },
+    {
+      "id": "5",
+      "name": "Jane Austen",
+      "bornYear": 1775,
+      "bornCountry": "Ireland"
+    },
+    {
+      "id": "6",
+      "name": "Dan Brown",
+      "bornYear": 1964,
+      "bornCountry": "US"
+    },
+    {
+      "id": "7",
+      "name": "Terry Pratchett",
+      "bornYear": 1948,
+      "bornCountry": "England"
+    },
+    {
+      "id": "8",
+      "name": "Nail Gaiman",
+      "bornYear": 1906,
+      "bornCountry": "England"
+    }
+  ]
+}   
